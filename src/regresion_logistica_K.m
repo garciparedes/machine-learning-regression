@@ -10,5 +10,4 @@ function w = regresion_logistica_K(x, y)
   nu = 1 ./ (1 .+ e.^-(x * w));
   s = (nu .* (1 .- nu));
   w = inv(x' .* s' * x)*x'*(s'*x*w + y - nu);
-  w
 end

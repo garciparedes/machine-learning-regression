@@ -8,7 +8,7 @@
 
 # cargar datos. 'wine_data.csv' no lleva nombres de campos.
 
-dataset=csvread('./../datasets/wine0.csv', 1, 0);
+dataset=csvread('./../datasets/wine.csv', 1, 0);
 
 # Aislar x e y
 
@@ -89,7 +89,33 @@ w = regresion_logistica_K(x_ampliado, y);
 tasa_acierto_logistic = sum(1 ./ (1 + e.^(x_ampliado * w)) < 0.5 == y,1) /size(y,1)*100;
 tasa_fallo_logistic = 100 - tasa_acierto_logistic
 
+y_train_m = y_train == unique(y_train)';
+y_m = y == unique(y)';
+
+
+w_m = zeros(size(x_ampliado,2), size(y_m,2));
+
+for i = 1:size(w_m,2)
+  w_m(:,i) = regresion_logistica_K(x_ampliado, y_m(:,i));
+endfor
+w_m
+
+1 ./ (1 + e.^(x_ampliado * w_m));
+
+correct = 0;
+for i = 1:size(y_m)
+  [M,I] = max(1 ./ (1 + e.^(x_ampliado(i,:) * w_m)));
+  correct += (I-1) == (y_m(i));
+endfor
+correct
+
+tasa_acierto_logistic = correct /size(y,1)*100;
+tasa_fallo_logistic = 100 - tasa_acierto_logistic
+
+
+
 %{
+
 
 # Formación de ficheros de entrenamiento y test
 data_train=zeros(size(x_train)(1), size(x_train)(2)+1);
