@@ -13,6 +13,11 @@ dataset=csvread('./../datasets/wine.csv', 1, 0);
 # Aislar x e y
 
 x=dataset(:,1:size(dataset)(2)-1);
+
+x_ampliado = ones(size(x)(1), size(x)(2)+1);
+x_ampliado(:, 1)=ones(size(x_ampliado)(1), 1);
+x_ampliado(:, 2:size(x)(2)+1) = x;
+
 y=dataset(:,size(dataset)(2));
 
 # Construir los conjuntos de entrenamiento
@@ -28,8 +33,9 @@ x_sort=sortrows(x_index, size(dataset)(2));
 
 x_train=x_sort(1:hold_out_train, 1:size(x)(2));
 
-x_train_ampliado=resize(x_train, size(x_train)(1), size(x_train)(2)+1);
-x_train_ampliado(:, size(x_train)(2)+1)=ones(size(x_train_ampliado)(1), 1);
+x_train_ampliado = ones(size(x_train)(1), size(x_train)(2)+1);
+x_train_ampliado(:, 1)=ones(size(x_train)(1), 1);
+x_train_ampliado(:, 2:size(x_train)(2)+1) = x_train;
 
 
 y_index=resize(y, size(y)(1), size(y)(2)+1);
