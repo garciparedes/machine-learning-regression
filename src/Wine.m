@@ -83,11 +83,11 @@ tasa_fallo_20=100-tasa_acierto_20
 tasa_fallo_25=100-tasa_acierto_25
 
 y = y .- 1;
-w = regresion_logistica_K(x_ampliado, y,0.001,1000);
-1 ./ (1 + e.^(x_ampliado * w))
+w = regresion_logistica_K(x_ampliado, y);
+1 ./ (1 + e.^(x_ampliado * w));
 
-# tasa_acierto_logistic = sum(1 ./ (1 + e.^(x_ampliado * w)) < 0.5 == y,1) /size(y,1)*100;
-# tasa_fallo_logistic = 100 - tasa_acierto_logistic
+tasa_acierto_logistic = sum(1 ./ (1 + e.^(x_ampliado * w)) < 0.5 == y,1) /size(y,1)*100;
+tasa_fallo_logistic = 100 - tasa_acierto_logistic
 
 %{
 
