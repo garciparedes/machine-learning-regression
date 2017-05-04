@@ -23,4 +23,5 @@ x_ampliado(:, 2:size(x)(2)+1) = x;
 # Regresion Lineal
 
 w = regresion_logistica_K(x_ampliado, y);
-logistic_rate = sum(1 ./ (1 + e.^(x_ampliado * w)) < 0.5 == y,1) /size(y,1) 
+1 ./ (1 + e.^(x_ampliado * w))
+logistic_rate = sum(1 ./ (1 + e.^(x_ampliado * w)) < 0.5 == y,1) /size(y,1)
