@@ -1,7 +1,9 @@
 #
 # Name: Multiple Linear Regresion
 # Subject: Tecnicas de Aprendizaje Automatico
-# Author: Teodoro Calonge Cano
+# Author: Calonge Cano, Teodoro
+# Author: García Prado, Sergio
+# Author: Fernández Angulo, Oscar
 
 function w = regresion_lineal_K(x, y)
   A = zeros(size(x)(2), size(x)(2));

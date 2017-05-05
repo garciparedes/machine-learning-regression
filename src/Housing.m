@@ -1,9 +1,10 @@
 #
-# Name: Multiple Linear Regresion with Relative Errors
+# Name: Multiple Linear Regresion
 # DataSet: housing
 # Subject: Tecnicas de Aprendizaje Automatico
-# Author: Teodoro Calonge Cano
-# Adapted by: Sergio García Prado
+# Author: Calonge Cano, Teodoro
+# Author: García Prado, Sergio
+# Author: Fernández Angulo, Oscar
 
 
 # cargar datos. 'housing_data.csv' no lleva nombres de campos.

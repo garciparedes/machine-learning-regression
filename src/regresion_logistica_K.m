@@ -1,7 +1,9 @@
 #
-# Name: Multiple Linear Regresion
+# Name: Logistic Regresion
 # Subject: Tecnicas de Aprendizaje Automatico
-# Author: Teodoro Calonge Cano
+# Author: Calonge Cano, Teodoro
+# Author: García Prado, Sergio
+# Author: Fernández Angulo, Oscar
 
 function w = regresion_logistica_K(x, y)
   w = zeros( size(x,2),1);

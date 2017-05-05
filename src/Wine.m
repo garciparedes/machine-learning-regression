@@ -1,9 +1,10 @@
 #
-# Name: Multiple Linear Regresion with Relative Errors
-# DataSet: housing
+# Name: Multiple Logistic Regresion
+# DataSet: wine
 # Subject: Tecnicas de Aprendizaje Automatico
-# Author: Teodoro Calonge Cano
-# Adapted by: Sergio García Prado
+# Author: Calonge Cano, Teodoro
+# Author: García Prado, Sergio
+# Author: Fernández Angulo, Oscar
 
 
 # cargar datos. 'wine_data.csv' no lleva nombres de campos.
