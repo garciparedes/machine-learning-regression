@@ -49,14 +49,17 @@ y_train=y_sort(1:hold_out_train, 1:size(y)(2));
 
 x_test=x_sort((hold_out_train+1):size(x)(1), 1:size(x)(2));
 
-x_test_ampliado=resize(x_test, size(x_test)(1), size(x_test)(2)+1);
-x_test_ampliado(:, size(x_test_ampliado)(2))=ones(size(x_test_ampliado)(1),1);
+
+x_test_ampliado = ones(size(x_test)(1), size(x_test)(2)+1);
+x_test_ampliado(:, 1)=ones(size(x_test)(1), 1);
+x_test_ampliado(:, 2:size(x_test)(2)+1) = x_test;
+
 
 y_test=y_sort((hold_out_train+1):size(y)(1), 1:size(y)(2));
 
 # Regresion Lineal
 
-w=regresion_lineal_K(x_train, y_train);
+w=regresion_lineal_K(x_train_ampliado, y_train);
 
 
 # Salida REAL Test
@@ -83,10 +86,9 @@ tasa_fallo_20=100-tasa_acierto_20
 tasa_fallo_25=100-tasa_acierto_25
 
 
-y_m = y == unique(y)';
+y_m = y_train == unique(y_train)';
 
-
-c_size = (size(y_m,2)^2-size(y_m,2))/2;
+c_size = (size(y_train,2)^2-size(y_train,2))/2;
 w_m = zeros(size(x_ampliado,2), c_size);
 
 ii = 0;
@@ -94,15 +96,12 @@ for i = 1:c_size-1
   for j = i+1:c_size
     ii += 1;
     c_index = (y_m(:,i) + y_m(:,j)) == 1;
-    y_bin = y(c_index,:) == unique(y(c_index))(2);
-    x_bin = x_ampliado(c_index,:);
+    y_bin = y_train(c_index,:) == unique(y_train(c_index))(2);
+    x_bin = x_train_ampliado(c_index,:);
     w_m(:,ii) = regresion_logistica_K(x_bin, y_bin);
-    # logistic_rate = sum(1 ./ (1 + e.^(x_bin * w_m(:,ii))) < 0.5 == y_bin,1) /size(y_bin,1);
   end
 end
-#w_m
-
-c_out = 1 ./ (1 + e.^(x_ampliado * w_m)) < 0.5;
+c_out = 1 ./ (1 + e.^(x_test_ampliado * w_m)) < 0.5;
 c_divided = zeros(size(c_out,1),c_size);
 
 ii = 0;
@@ -120,20 +119,19 @@ for i = 1:c_size-1
 end
 correct = 0;
 for i = 1:size(c_divided,1)
-  [M,I] = max(c_divided(i,:));
-  correct += (I == y(i));
+  [M,I] = max(c_divided(i,:))(2);
+  correct += (I == y_test(i));
 end
-correct
+tasa_acierto_logistic = 100 * correct /size(y_test,1);
+tasa_fallo_logistic = 100 -tasa_acierto_logistic
 
 %{
-
 
 # Formación de ficheros de entrenamiento y test
 data_train=zeros(size(x_train)(1), size(x_train)(2)+1);
 data_train(1:size(data_train)(1), 1:(size(data_train)(2)-1))=x_train;
 data_train(1:size(data_train)(1), size(data_train)(2))=y_train;
 csvwrite('data_wine_train_octave.csv', data_train);
-
 
 data_test=zeros(size(x_test)(1), size(x_test)(2)+1);
 data_test(1:size(data_test)(1), 1:(size(data_test)(2)-1))=x_test;
