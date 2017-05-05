@@ -82,16 +82,38 @@ tasa_fallo_15=100-tasa_acierto_15
 tasa_fallo_20=100-tasa_acierto_20
 tasa_fallo_25=100-tasa_acierto_25
 
-y = y .- 1;
-w = regresion_logistica_K(x_ampliado, y);
-1 ./ (1 + e.^(x_ampliado * w));
 
-tasa_acierto_logistic = sum(1 ./ (1 + e.^(x_ampliado * w)) < 0.5 == y,1) /size(y,1)*100;
-tasa_fallo_logistic = 100 - tasa_acierto_logistic
-
-y_train_m = y_train == unique(y_train)';
 y_m = y == unique(y)';
 
+
+y_m
+
+
+c_size = (size(y_m,2)^2-size(y_m,2))/2
+
+w_m = zeros(size(x_ampliado,2), c_size)
+
+w_i = 0
+for i = 1:c_size-1
+  for j = i+1:c_size
+    w_i += 1;
+    # [i,j]
+    c_index = (y_m(:,i) + y_m(:,j)) == 1;
+    # size(y(c_index,:))
+    # y(c_index,:)
+    y_bin = y(c_index,:) == unique(y(c_index))(2);
+    # size(x_ampliado(c_index,:))
+    x_bin = x_ampliado(c_index,:);
+    w_m(:,w_i) = regresion_logistica_K(x_bin, y_bin);
+    # logistic_rate = sum(1 ./ (1 + e.^(x_bin * w_m(:,w_i))) < 0.5 == y_bin,1) /size(y_bin,1);
+  end
+end
+w_m
+1 ./ (1 + e.^(x_ampliado * w_m)) < 0.5
+
+%{
+y = y .- 1;
+y_m = y == unique(y)';
 
 w_m = zeros(size(x_ampliado,2), size(y_m,2));
 
@@ -107,11 +129,10 @@ for i = 1:size(y_m)
   [M,I] = max(1 ./ (1 + e.^(x_ampliado(i,:) * w_m)));
   correct += (I-1) == (y_m(i));
 endfor
-correct
 
 tasa_acierto_logistic = correct /size(y,1)*100;
 tasa_fallo_logistic = 100 - tasa_acierto_logistic
-
+%}
 
 
 %{
