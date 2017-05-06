@@ -66,9 +66,6 @@ w=regresion_lineal_K(x_train_ampliado, y_train);
 # Salida REAL Test
 
 y_p=x_test_ampliado*w;
-data_train=zeros(size(x_train)(1), size(x_train)(2)+1);
-data_train(1:size(data_train)(1), 1:(size(data_train)(2)-1))=x_train;
-data_train(1:size(data_train)(1), size(data_train)(2))=y_train;
 
 #Error
 error_absoluto=abs(y_test - y_p);
