@@ -56,7 +56,7 @@
 		\paragraph{}
 		[TODO
 
-		\begin{figure}
+		\begin{figure}[h]
 			\begin{center}
 				\begin{tikzpicture}
 					\begin{axis}[
@@ -81,20 +81,19 @@
 
 		\paragraph{}
 		[TODO ]
-		
-		\begin{table}
+
+		\begin{table}[h]
 			\centering
 			\small
-			\begin{tabu}{ | c | c | c | c | c | c | c | c | c | c | }
+			\begin{tabu}{ | c | c | c | c | c | }
 				\hline
-				\multicolumn{5}{ | c | }{HoldOut 66\%/33\% --- Regresión --- Housing Dataset} \\ \hline
-				\multirow{2}{*}{Datos}	& \multicolumn{4}{ c |}{Tasa de Error} \\ \cline{2-5}
-																& \emph{Lineal 10\%} & \emph{Lineal 15\%} & \emph{Lineal 20\%} & \emph{Lineal 25\%}\\ \hline
-				Entrenae						& $57.396\%$	 & $42.604\%$ & $26.627\%$ & $18.343\%$ \\
+					& \multicolumn{4}{ c | }{Regresión --- Housing Dataset} \\ \hline
+					& \emph{Lineal 10\%} & \emph{Lineal 15\%} & \emph{Lineal 20\%} & \emph{Lineal 25\%}\\ \cline{2-5}
+				Error HoldOut						& $57.396\%$	 & $42.604\%$ & $26.627\%$ & $18.343\%$ \\
 				\hline
 			\end{tabu}
 			\caption{[TODO ]}
-			\label{table:e2}
+			\label{table:e1}
 		\end{table}
 
 	\section{Comparación de resultados entre Regresión Logística y Regresión Lineal Múltiple}
@@ -104,7 +103,7 @@
 		[TODO]
 
 
-		\begin{figure}
+		\begin{figure}[h]
 			\begin{center}
 				\begin{tikzpicture}
 					\begin{axis}[
@@ -129,15 +128,14 @@
 		\paragraph{}
 		[TODO ]
 
-		\begin{table}
+		\begin{table}[h]
 			\centering
 			\small
-			\begin{tabu}{ | c | c | c | c | c | c | c | c | c | c | }
+			\begin{tabu}{ | c | c | c | c | c | c | }
 				\hline
-				\multicolumn{6}{ | c | }{HoldOut 66\%/33\% --- Regresión --- Wine Dataset} \\ \hline
-				\multirow{2}{*}{Datos}	& \multicolumn{5}{ c |}{Tasa de Error} \\ \cline{2-6}
-																& \emph{Lineal 10\%} & \emph{Lineal 15\%} & \emph{Lineal 20\%} & \emph{Lineal 25\%} & \emph{Logística}\\ \hline
-				Entrenae						& $55.932\%$	 & $33.898\%$ & $27.119\%$ & $13.559\%$	& $1.6949\%$ \\
+					& \multicolumn{5}{ c | }{Regresión --- Wine Dataset} \\ \hline
+					&\emph{Lineal 10\%} & \emph{Lineal 15\%} & \emph{Lineal 20\%} & \emph{Lineal 25\%} & \emph{Logística}\\ \cline{2-6}
+				Error HoldOut	& $55.932\%$	 & $33.898\%$ & $27.119\%$ & $13.559\%$	& $1.6949\%$ \\
 				\hline
 			\end{tabu}
 			\caption{[TODO ]}
