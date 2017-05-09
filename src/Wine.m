@@ -86,7 +86,7 @@ tasa_fallo_25=100-tasa_acierto_25
 
 y_m = y_train == unique(y_train)';
 
-c_size = (size(y_train,2)^2-size(y_train,2))/2;
+c_size = (size(y_m,2)*(size(y_m,2)-1)/2);
 w_m = zeros(size(x_ampliado,2), c_size);
 
 ii = 0;
@@ -117,7 +117,7 @@ for i = 1:c_size-1
 end
 correct = 0;
 for i = 1:size(c_divided,1)
-  [M,I] = max(c_divided(i,:))(2);
+  [M,I] = max(c_divided(i,:));
   correct += (I == y_test(i));
 end
 tasa_acierto_logistic = 100 * correct /size(y_test,1);

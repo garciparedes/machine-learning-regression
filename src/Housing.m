@@ -51,7 +51,7 @@ y_test=y_sort((hold_out_train+1):size(y)(1), 1:size(y)(2));
 
 # Regresion Lineal
 
-w=regresion_lineal_K(x_train, y_train);
+w=regresion_lineal_K(x_train_ampliado, y_train);
 
 
 # Salida REAL Test
