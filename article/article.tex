@@ -21,7 +21,7 @@
 %-----------------------------
 
 	\begin{abstract}
-		\noindent [TODO ]
+		\noindent En este documento se realiza una descripción acerca de la \emph{Regresión Lineal Múltiple} y la \emph{Regresión Logística} desde el punto de vista del ámbito de la \emph{Inteligencia Artificial}. Además, se han realizado implementaciones de dichas técnicas en el lenguaje \emph{Octave}(\emph{MatLab}) para después utilizarlas en la realización de varios experimentos de comparación y cotas de tasa de error con los conjuntos de datos \emph{Housing} \cite{dataset:housing} y \emph{Wine}\cite{dataset:wine}
 	\end{abstract}
 
 %-----------------------------
@@ -32,21 +32,52 @@
 	\section{Introducción}
 	\label{sec:introducción}
 
-		\paragraph{}
-		[TODO]
-
 		\subsection{Regresión Lineal Múltiple}
 
 			\paragraph{}
-			[TODO]
+			La \emph{regresión lineal} es un modelo matemático usado para aproximar la relación de dependencia entre una variable dependiente $Y$, las variables independientes $X_i$ y un término aleatorio $\epsilon$. Este modelo se describe en la ecuación \eqref{eq:linear_regresion} donde las variables $\beta_i$ representan los pesos que ajustan los valores de las variables $X_i$ para aproximar su suma total al valor deseado ( $= Y$ ).
 
+			\begin{equation}
+			\label{eq:linear_regresion}
+				{\displaystyle Y=\beta _{0}+\beta _{1}X_{1}+\beta _{2}X_{2}+\cdots +\beta _{p}X_{p}+\varepsilon }
+			\end{equation}
+
+			\paragraph{}
+			Por tanto, en este modelo de aprendizaje, se trata de aprender el valor de dichos pesos a partir de un conjunto de datos de entrenamiento. La estrategia que se ha utilizado en este caso ha sido el ajuste por mínimos cuadrados, el cual trata de minimizar la diferencia global ajustando dichos pesos. Para dicha tarea se ha utilizado la implementación en \emph{Octave} que se muestra en la figura \ref{code:lineal_regression}.
+
+			\begin{figure}[h]
+				\centering
+				\inputminted{octave}{./code/regresion_lineal_k.m}
+				\caption{Octave: /src/regresion\_lineal\_k.m}
+				\label{code:lineal_regression}
+			\end{figure}
 
 
 		\subsection{Regresión Logística}
 
 			\paragraph{}
-			[TODO]
+			La estrategia de \emph{Regresión Logística} se corresponde con una transformación de la lineal descrita en la sección anterior. El nombre de dicha técnica viene dado por la función utilizada para la transformación (función logística), que se describe en la ecuación \eqref{eq:logistic_function}. Mediante esta transformación se consigue que los resultados de la regressión (variable $Y$) cambien su dominio al rango $[0,1]$.
 
+			\begin{equation}
+			\label{eq:logistic_function}
+				f(x)={\frac  {1}{1+{\mathrm  e}^{{-k(x-x_{0})}}}}
+			\end{equation}
+
+			\paragraph{}
+			El planteaminto de esta estrategia en el campo de la \emph{Inteligencia Artifical} es diferente respecto de la anterior. En este caso en lugar de tratar de aproximar la regresión al valor deseado, se utiliza para conocer el grado de similitud de los datos de entrada respecto de una determinada clase. Por tanto, funciona como un clasificador de carácter binario si se fija el valor de destino cuando la regresión cruza el umbral $0.5$.
+
+			\paragraph{}
+			Para extender dicho funcionamiento a clasificadores de varias clases se utiliza una estrategia de clasificación por pares, lo cual conlleva la utilización de $\frac{k(k-1)}{2}$ clasficadores cuando existen $k$ clases distintas de destino. El valor que se asigna es el de la clase que más veces haya resultado ganadora y se toma como un fallo los casos de empate.
+
+			\paragraph{}
+			El algoritmo de aprendizaje de pesos utilizado  (al igual que en el caso anterior) se describe mediante su implementación en el lenguaje \emph{Octave} en la figura \ref{code:logistic_regression}. Dicha implementación se refiere al ajuste por mínimos cuadrados al igual que en el caso anterior. En este caso se pueden realizar varias iteraciones para el ajuste, pero se ha comprobado que para el conjunto de datos utilizada una iteración ofrece buenos resultados.
+
+			\begin{figure}[h]
+				\centering
+				\inputminted{octave}{./code/regresion_logistica_k.m}
+				\caption{Octave: /src/regresion\_logistica\_k.m}
+				\label{code:logistic_regression}
+			\end{figure}
 
 
 
@@ -158,7 +189,6 @@
 %-----------------------------
 	\nocite{garciparedes:machine-learning-regression}
 	\nocite{subject:taa}
-	\nocite{tool:weka}
   \bibliographystyle{alpha}
   \bibliography{bib/misc}
 
