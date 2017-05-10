@@ -54,7 +54,13 @@
 	\label{sec:e1}
 
 		\paragraph{}
-		[TODO
+		En esta sección se realiza un experimento para estudiar la evolución de la tasa de error conforme aumenta la cota de error relativo fijada para admitir una instancia como clasificada de manera correcta. El algoritmo utilizado es el de Regresión Lineal Múltiple mediante el aprendizaje por mínimos cuadrados descrito anteriormente.
+
+		\paragraph{}
+		El conjunto de datos que se ha utilizado para dichos experimentos es \textbf{Housing Data Set} \cite{dataset:housing}, que está formado por \textbf{506 instancias}. Dichas instancias contienen \textbf{13 atributos} de carácter númerico. La \textbf{clase de destino es de carácter numérico} (por lo que es una regresión y no una clasificación). En cuanto a la metodología experimental, se ha seguido una extrategia de \textbf{HoldOut} con particionamiento de los datos de manera que $\frac{2}{3}$ son utilizados en la fase de entrenamiento y $\frac{1}{3}$ en la de test.
+
+		\paragraph{}
+		Los resultados obtenidos tras los experimentos se muestran de manera tabular en la tabla \ref{table:e1} mientras que se puede apreciar la evolución conforme aumenta el rango de la cota de error de manera gráfica en la figura \ref{plot:e1}.
 
 		\begin{figure}[h]
 			\begin{center}
@@ -75,12 +81,9 @@
 					\end{axis}
 				\end{tikzpicture}
 			\end{center}
-			\caption{[ TODO]}
+			\caption{Evolución de la tasa de error para la \emph{Regresión Lineal Múltiple} sobre el conjunto de datos \emph{Housing} conforme aumenta la cota máxima de error relativo}
 			\label{plot:e1}
 		\end{figure}
-
-		\paragraph{}
-		[TODO ]
 
 		\begin{table}[h]
 			\centering
@@ -92,7 +95,7 @@
 				Error HoldOut						& $57.396\%$	 & $42.604\%$ & $26.627\%$ & $18.343\%$ \\
 				\hline
 			\end{tabu}
-			\caption{[TODO ]}
+			\caption{Evolución de la tasa de error para la \emph{Regresión Lineal Múltiple} sobre el conjunto de datos \emph{Housing} conforme aumenta la cota máxima de error relativo}
 			\label{table:e1}
 		\end{table}
 
@@ -100,7 +103,13 @@
 	\label{sec:e2}
 
 		\paragraph{}
-		[TODO]
+		En esta sección se realiza un experimento para estudiar la tasa de error obtenida mediante la estrategia de \emph{Regresión Logística} para después compararla con los resultados obtenidos mediante la estrategia de \emph{Regresión Lineal}. Dicha labor es posible cuando la clase de destino es numérica pero se puede discretizar. (En este caso es de carácter entero y acotada por lo que su discretización es trivial). Puesto que no es de tipo binario es necesario seguir la estrategía de clasificación por pares tal y como se ha descrito anteriormente.
+
+		\paragraph{}
+		El conjunto de datos que se ha utilizado para dichos experimentos es \textbf{Wine Data Set} \cite{dataset:wine}, formado por \textbf{178 instancias}. Dichas instancias contienen \textbf{12 atributos} de carácter númerico. La \textbf{clase de destino es de carácter numérico}. Sin embargo, en este caso es de tipo entero, por lo que puede ser vista como una variable categórica. En cuanto a la metodología experimental, se ha seguido una extrategia de \textbf{HoldOut} con particionamiento de los datos de manera que $\frac{2}{3}$ son utilizados en la fase de entrenamiento y $\frac{1}{3}$ en la de test.
+
+		\paragraph{}
+		Los resultados obtenidos tras los experimentos se muestran de manera tabular en la tabla \ref{table:e2}. Además, se muestran de manera gráfica en la figura \ref{plot:e2}.
 
 
 		\begin{figure}[h]
@@ -121,12 +130,9 @@
 					\end{axis}
 				\end{tikzpicture}
 			\end{center}
-			\caption{[TODO ]}
+			\caption{Resultados obtenidos a nivel de tasa de error mediante \emph{Regresión Lineal Múltiple} y \emph{Regresión Logística} sobre el conjunto de datos \emph{Wine}}
 			\label{plot:e2}
 		\end{figure}
-
-		\paragraph{}
-		[TODO ]
 
 		\begin{table}[h]
 			\centering
@@ -138,9 +144,12 @@
 				Error HoldOut	& $55.932\%$	 & $33.898\%$ & $27.119\%$ & $13.559\%$	& $1.6949\%$ \\
 				\hline
 			\end{tabu}
-			\caption{[TODO ]}
+			\caption{Resultados obtenidos a nivel de tasa de error mediante \emph{Regresión Lineal Múltiple} y \emph{Regresión Logística} sobre el conjunto de datos \emph{Wine}}
 			\label{table:e2}
 		\end{table}
+
+		\paragraph{}
+		Tal y como se puede apreciar tras analizar los resultados, a través de la \emph{Regresión Logística} se obtienen resultados mucho más óptimos. Sin embargo, para aplicar dicha técnica es necesario que la clase de destino esté discretizada. Además conlleva un mayor coste computacional derivado de la estrategia de clasificación por pares, que incrementa en un orden cuadrático los costes conforme aumentan el número de clases de destino.
 
 
 
